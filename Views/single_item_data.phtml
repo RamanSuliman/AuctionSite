@@ -1,0 +1,68 @@
+<?php require_once('template/header.phtml'); ?>
+<script>
+    const item_id = "<?php echo $_GET['id']; ?>";
+    const item_date = "<?php echo $view->bid_item_auction_details['end_date']; ?>";
+    let opening_Price = "<?php echo $view->bid_item_auction_details['Min_price']; ?>";
+</script>
+<section >
+    <div class="container single_item_view pb-lg-5">
+        <div class="row single_item_header">
+            <div class="col-12 d-inline-flex">
+                <div class="border border-left-0 border-top-0 border-bottom-0 pr-3">
+                    <h4 class="clearfix">Lot</h4>
+                    <h4> <?php echo $_GET['id']; ?>  </h4>
+                </div>
+                <div class="ml-3 text-small mt-md-2 mt-2">
+                    <h5 class="lot_title"> Auction ends: <?php echo $view->bid_item_auction_details['end_date'] . " " . $view->bid_item_auction_details['end_time']; ?> </h5>
+                    <h6> <?php echo $view->bid_item_auction_details['title']; ?> </h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h3 id="dateCountDown" class="text-center mt-2 mb-0 mx-auto itemCountDownTimer"> </h3>
+            <div class="col-12 d-flex flex-row mt-0">
+                <div class="mx-auto">
+                    <span class="text-center mr-4 ml-1 dateLabels">Days</span>
+                    <span class="text-center ml-4 mr-3 dateLabels">Hours</span>
+                    <span class="text-center ml-4 mr-4 dateLabels">Minutes</span>
+                    <span class="text-center ml-1 dateLabels">Seconds</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 border border-left-0 border-right-0">
+            <?php require_once('Views/Side Panels/notification.phtml'); ?>
+            <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 p-sm-3 pt-xl-1 pt-lg-3 pt-md-4">
+                <img class="img-responsive img-fluid bid_pic rounded my-0 mx-xl-3 p-xl-4 ml-sm-4" src="Images/<?php echo $view->ItemImage;?>.jpg" alt="Card image cap">
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-6 pr-md-1 pr-lg-2 mr-auto ml-auto">
+                <div class="card my-4 mr-lg-5 mr-md-1 mt-lg-4 mt-md-3">
+                    <div class="card-header pb-1 bg-warning"><h5 class="text-center"> Bidding Section </h5></div>
+                    <?php if($user->isLoggedIn()) { echo '<h5 class="text-success mt-3 text-center">Make me yours ' . $user->getUserName($user->getID()) . '</h5>';} ?>
+                    <div class="card-body pt-0 pb-1 mt-3">
+                        <h6 class="card-text text-secondary"> Current bid price:<span id="bid_price" class="ml-4 font-weight-bold text-primary"> <?php echo $view->bid_MaxPrice; ?> </span> </h6>
+                        <h6 class="card-text text-secondary"> Your Current Price:<span id="user_price" class="ml-3 font-weight-bold text-primary"> <?php echo $view->latest_user_price; ?> </span> </h6>
+                        <p class="card-text text-success"> Bids: <span id="biders" class="ml-2 font-weight-bold text-primary"> <?php echo $view->bid_item_auction_details['number_of_bids']; ?> </span></p>
+                        <p class="card-text text-secondary"> Place your bid amount <abbr class="fa fa-question-circle text-decoration-none" title="Ensure the mount you place is higher than the current highest amount."></abbr></p>
+                        <p class="text-danger text-center font-weight-bold"><span id="eror_msg" class="text-center font-weight-bold"> </span></p>
+                        <form class="form-inline w-100">
+                            <label class="w-100 mb-2">
+                                <input class="w-100 text-center" id="input_price" name="bid_amount" type="text" placeholder="Enter your maximum bid" onkeyup="checkUserBidPrice()" required>
+                            </label>
+                            <input type="hidden" value="<?php echo $_GET['id'];?>" name="id">
+                            <?php if($user->isLoggedIn()) { require_once("Buttons/enabled_bid_button.phtml"); $message = '';}
+                                    else{require_once("Buttons/disabled_bid_button.phtml"); $message = "You must sign in first in order to place a bid for an item.";}
+                                    if($user->isAdminLogged()) {$message = "Admin can't place a bid, sign up as normal user for that!!";}
+                                    echo '<p class="text-danger mt-2 text-center">' . $message . ' </p>'; ?>
+                        </form>
+                        <p class="text-secondary mt-3"> (bid <span id="price_sugguestion"> <?php echo $view->bid_MaxPrice; ?> </span> GBP or higher)</p>
+                    </div>
+                    <div class="card-footer mt-0">
+                        <p class="text-center mb-1 text-secondary"> Estimated price <span class="ml-2 font-weight-bold text-primary"> <?php echo $view->bid_item_auction_details['Min_price'] . " GBP - " . $view->bid_item_auction_details['Max_price'] . " GBP"; ?> </span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="JavaScript/bidding.js"></script>
+<?php require('template/footer.phtml') ?>

@@ -1,0 +1,45 @@
+<div class="col-12 mt-3 filter-header-label text-center">
+    <h5> Filter Options </h5>
+</div>
+<form class="col-12 mt-3 sort-functions">
+    <div class="col-12 mt-3 sort-functions">
+        <h6 class="font-weight-bold">LOTS Number</h6>
+        <div class="form-check pl-4 mb-3">
+            <input type="radio" class="form-check-input" id="defaultLotNum" name="lot_number" value="8" checked>
+            <label class="form-check-label small text-uppercase card-link-secondary" for="lot">8</label><br>
+
+            <input type="radio" class="form-check-input mt-2"  name="lot_number" value="12">
+            <label class="form-check-label small text-uppercase card-link-secondary mt-2" for="lot">12</label><br>
+
+            <input type="radio" class="form-check-input mt-2" name="lot_number" value="16">
+            <label class="form-check-label small text-uppercase card-link-secondary mt-2" for="lot">16</label><br>
+
+            <input type="radio" class="form-check-input mt-2"  name="lot_number" value="20">
+            <label class="form-check-label small text-uppercase card-link-secondary mt-2" for="lot">20</label><br>
+        </div>
+    </div>
+    <div class="col-12 mt-3 sort-functions">
+        <h6 class="font-weight-bold">Price Max</h6>
+        <div class="form-check pl-4 mb-3">
+            <input id="max_price" type="radio" class="form-check-input" id="lot" name="price" value="max_price">
+            <label class="form-check-label small text-uppercase card-link-secondary" for="lot">Max price to low</label><br>
+        </div>
+    </div>
+    <div class="col-12 mt-3 sort-functions">
+        <h6 class="font-weight-bold">Price Min</h6>
+        <div class="form-check pl-4 mb-3">
+            <input id="min_price" type="radio" class="form-check-input" id="lot" name="price" value="low_price">
+            <label class="form-check-label small text-uppercase card-link-secondary" for="lot">Min price to max</label><br>
+        </div>
+    </div>
+    <div class="col-12 mt-4 d-flex">
+        <input onclick="filterItems()" class="mx-auto bg-success text-white rounded" type="button" name="filter" value="Filter">
+        <input onclick="resetFilters()" class="mx-auto bg-danger text-white rounded" type="button" name="reset" value="Reset">
+    </div>
+</form>
+<h5 class="text-info mt-5 mb-2"> Please Read Me</h5>
+<h6 class="border border-bottom-1 border-top-1 border-left-0 border-right-0 border-dark p-2">
+    Default number of LOTs to display are <span class="text-danger">8</span> per page unless specified using above options.
+    To load more LOTs just scroll all the way down until seeing load more message indicating further lots are loaded. To go
+    back to previous LOTs do the opposite scrolling all the way up.
+</h6>

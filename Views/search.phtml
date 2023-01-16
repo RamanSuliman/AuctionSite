@@ -1,0 +1,46 @@
+<?php require_once('Views/template/header.phtml') ?>
+    <section>
+        <div class="container-fluid">
+            <div class="row body-header">
+                <div class="col-lg-12 my-auto">
+                    <h2 class="text-center body-header-text"> Search Results </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row m-auto">
+                        <div class="col-12">
+                            <div class="row">
+                                <?php
+                                if($view->numberOfData == 0)
+                                {
+                                    echo '<div class=" bg-white align-self-center p-3 border rounded mt-5 mx-auto">
+                                            <h1 class="text-center"> Search has found no results <span class="fa fa-frown text-danger"></span></h1>
+                                          </div>';
+                                }
+                                foreach ($view->result as $item){
+                                    $id = $item['item_id'];
+                                    echo ' <div class="col-xl-3 col-lg-4 col-md-6 my-3">
+                                         <a class="text-decoration-none" href="single_item.php?id=' . $id . '">
+                                            <div class="card anim_box3">
+                                                <img class="card-img-top" src="Images/'. $item['image'].'.jpg" alt="Card image cap">
+                                                <h5 class="card-title mt-2"> <small class="text-danger">' . $id . '</small>' . ' ' . $item['title'] . ' </h5>
+                                                <p class="card-text py-2"> ' . $item['description'] . '</p>
+                                                <h6 class="card-subtitle text-muted"> <span class="item-price"> Estimated  </span> ' . $item['Max_price'] . '</h6>
+                                                <p class="card-text py-2">Location: ' . $item['country'] . '</p>
+                                                <div class="card-footer bg-transparent text-center">Ends: ' . $item['end_date'] . ' at ' . $item['end_time'] . '</div>
+                                            </div></div> 
+                                        </a>';
+                                }
+
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<?php require('Views/Pagination.phtml');
+require('Views/template/footer.phtml'); ?>

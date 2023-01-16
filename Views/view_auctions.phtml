@@ -1,0 +1,42 @@
+<?php require_once('template/header.phtml') ?>
+    <section>
+        <div class="container-fluid">
+            <div class="row body-header">
+                <div class="col-lg-12 my-auto">
+                    <h2 class="text-center body-header-text"> Auctions Center </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-2 col-lg-3 filter-area d-lg-block d-none rounded">
+                    <div class="row">
+                        <?php require("Views/Side Panels/filter_aunctions.phtml"); ?>
+                    </div>
+                </div>
+                <div class="col-xl-10 col-lg-9 col-md-12">
+                    <div class="row m-auto">
+                        <div class="col-12">
+                            <div class="row">
+                                <?php
+                                    foreach ($view->result  as $auctionData)
+                                    {
+                                        echo ' <div class="col-xl-3 col-lg-4 col-md-6 my-3">
+                                        <a class="text-decoration-none" href="items.php?id_auction=' . $auctionData->getAuction_id() . '">
+                                               <div class="card anim_box3">
+                                               <img class="card-img-top" src="Images/'. $auctionData->getImage().'.jpg" alt="Card image cap">
+                                               <h5 class="card-title mt-2"> '. $auctionData->getTitle() . ' </h5>
+                                               <p class="card-text py-2">Location: ' . $auctionData->getCountry_ID() . '</p>
+                                               <div class="card-footer bg-transparent text-center">Ends: ' . $auctionData->getEnd_date() . ' at ' . $auctionData->getEnd_time() . '</div>
+                                               </div>
+                                               </div>
+                                        </a>';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php require('Views/Pagination.phtml');
+      require('template/footer.phtml'); ?>

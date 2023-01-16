@@ -1,0 +1,55 @@
+<?php require_once('Views/template/header.phtml') ?>
+    <section>
+        <div class="container-fluid">
+            <div class="row body-header">
+                <div class="col-lg-12 my-auto">
+                    <h2 class="text-center body-header-text"> Auctions of <?php echo $view->auction[0]; ?> </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-2 col-lg-3 filter-area d-lg-block d-none rounded">
+                    <?php require("Views/Side Panels/filter_items.phtml"); ?>
+                </div>
+                <div class="col-xl-10 col-lg-9 col-md-12">
+                    <div class="row m-auto">
+                        <div class="col-12 mr-md-5">
+                            <?php require("Views/Side Panels/view_single_auction.phtml"); ?>
+                        </div>
+                        <div class="col-12 border border-left-0 border-right-0 border-top-0 border-primary">
+                            <h5 class="text-danger text-center my-3"> <?php if($view->auction_expiration == 0){ echo "THE AUCTION IS EXPIRED!!!";}?> </h5>
+                        </div>
+                        <div class="col-12">
+                            <div class="row" id="load_data">
+                                <?php
+                                /*
+                                    $link_or_unlink = '#';
+                                    foreach ($view->result as $item){
+                                        if($view->auction_expiration != 0){$link_or_unlink = 'single_item.php?id=' . $item->getItem_id();}
+                                        echo ' <div class="col-xl-3 col-lg-4 col-md-6 my-3">
+                                             <a class="text-decoration-none" href="' . $link_or_unlink . '">
+                                                <div class="card anim_box3">
+                                                    <img class="card-img-top" src="Images/'. $item->getImage().'.jpg" alt="Card image cap">
+                                                    <h5 class="card-title mt-2"> <small class="text-danger">' . $item->getItem_id() . '</small>' . ' ' . $item->getTitle() . ' </h5>
+                                                    <h6 class="card-subtitle text-muted"> <span class="item-price"> Estimated  </span> ' . $item->getMin_Price() . '</h6>
+                                                    <p class="card-text py-2">Location: ' . $view->auction[0] . '</p>
+                                                    <div class="card-footer bg-transparent text-center">Ends: ' . $view->auction[1] . ' at ' . $view->auction[2] . '</div>
+                                                </div></div>
+                                            </a>';
+                                    }
+                                */
+                                ?>
+                            </div>
+                            <div id="load_data_message"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script> var auction_id = "<?php echo $_GET['id_auction'] ?>" </script>
+<script src="JavaScript/dynamic_item_loading.js"></script>
+
+<?php //require('Views/Pagination.phtml');
+require('Views/template/footer.phtml'); ?>
+

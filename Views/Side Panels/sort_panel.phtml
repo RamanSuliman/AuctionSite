@@ -1,0 +1,38 @@
+<form class="form-inline" method="post" action="items.php">
+<input class="text-warning mr-2 mr-xs-1 bg-dark rounded" type="submit" name="filter" value="Sort">
+<div class="ml-md-auto ml-1">
+    <label>
+        <span class="text-warning">Size</span>
+        <select id="lot_Numbers" name="lot_number" class="selectors text-warning bg-dark" >
+            <option value="4">
+                4
+            </option>
+            <option value="8">
+                8
+            </option>
+            <option value="12">
+                12
+            </option>
+            <option value="16">
+                16
+            </option>
+            <option value="20">
+                20
+            </option>
+        </select>
+    </label>
+</div>
+<div class="ml-md-auto ml-2">
+    <label>
+        <span class="text-warning">Price</span>
+        <select name="price" class="selectors text-warning bg-dark">
+            <option value="max_price">
+                Max First
+            </option>
+            <option value="low_price">
+                Low First
+            </option>
+        </select>
+    </label>
+</div>
+</form>

@@ -1,0 +1,31 @@
+<?php require_once("Views/template/header.phtml") ?>
+<div class="container-fluid accessDetails_pages pt-5 mt-5">
+    <div class="login-container text-c animated flipInX">
+        <div>
+            <h1 class="logo-badge text-whitesmoke pr-2"><span class="fa fa-user-circle text-warning"></span></h1>
+        </div>
+        <h3 class="text-whitesmoke">Sign In </h3>
+        <div class="container-content">
+            <form class="margin-t">
+                <div class="form-group">
+                    <input type="email" class="form-control log_controls" id="email" name="email" placeholder="Username" value="<?php if(isset($_GET['email']))echo $_GET['email']; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" onkeyup="validate_password(this.value)" class="form-control log_controls" placeholder="*****">
+                </div>
+                <p id="pass_status" class="text-danger text-center font-weight-bold"><small></small></p>
+                <button type="button" id="sign_log" name="log_in" onclick="login_signup('login')" class="form-button button-l margin-b">Sign In</button>
+                <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a>
+                <p class="text-whitesmoke text-center"><small>Do not have an account?</small></p>
+                <a class="text-darkyellow" href="login.php?signup=1"><small>Sign Up</small></a>
+            </form>
+            <p class="margin-t text-whitesmoke"><small> Raman &copy; 2020</small> </p>
+        </div>
+    </div>
+    <div class="animation_loader mx-auto mt-3"></div>
+</div>
+<script src="JavaScript/login.js"></script>
+<?php require('Views/template/footer.phtml') ?>
+
+
+

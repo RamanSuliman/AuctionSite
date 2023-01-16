@@ -1,0 +1,72 @@
+
+<nav class="p-2 border border-dark border-left-0 border-right-0" aria-label="Page navigation example">
+    <div class="text-white text-center mb-2">
+        <strong class="text-white">Page <?php echo $view->pageNumber . " of ". $view->totalNumber_of_page; ?></strong>
+    </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mb-1 flex-wrap">
+            <li <?php if($view->pageNumber <= 1){ echo "class='disabled page-item'"; } ?>>
+                <a class="page-link" <?php if($view->pageNumber > 1){ echo "href='?page=$view->prevPage'"; } ?>><span class="fa fa-arrow-circle-left"></span> Previous</a>
+            </li>
+            <?php
+                if ($view->totalNumber_of_page <= 10){
+                    for ($counter = 1; $counter <= $view->totalNumber_of_page; $counter++){
+                        if ($counter == $view->pageNumber) {
+                            echo "<li class='active'><a class='page-link'>$counter</a></li>";
+                        }else{
+                            echo "<li><a class='page-link' href='?page=$counter'>$counter</a></li>";
+                        }
+                    }
+                }
+                elseif($view->totalNumber_of_page > 10){
+
+                    if($view->pageNumber <= 4) {
+                        for ($counter = 1; $counter < 8; $counter++){
+                            if ($counter == $view->pageNumber) {
+                                echo "<li class='active'><a class='page-link'>$counter</a></li>";
+                            }else{
+                                echo "<li><a class='page-link' href='?page=$counter'>$counter</a></li>";
+                            }
+                        }
+                        echo "<li class='page-item'><a class='page-link'>...</a></li>";
+                        echo "<li class='page-item'><a class='page-link' href='?page=$view->second_last'>$view->second_last</a></li>";
+                        echo "<li class='page-item'><a class='page-link' href='?page=$view->totalNumber_of_page'>$view->totalNumber_of_page</a></li>";
+                    }
+
+                    elseif($view->pageNumber > 4 && $view->pageNumber < $view->totalNumber_of_page - 4) {
+                        echo "<li><a class='page-link' href='?page=1'>1</a></li>";
+                        echo "<li><a class='page-link' href='?page=2'>2</a></li>";
+                        echo "<li><a class='page-link'>...</a></li>";
+                        for ($counter = $view->pageNumber - $view->adjacents; $counter <= $view->pageNumber + $view->adjacents; $counter++) {
+                            if ($counter == $view->pageNumber) {
+                                echo "<li class='active'><a class='page-link'>$counter</a></li>";
+                            }else{
+                                echo "<li><a class='page-link' href='?page=$counter'>$counter</a></li>";
+                            }
+                        }
+                        echo "<li><a class='page-link'>...</a></li>";
+                        echo "<li><a class='page-link' href='?page=$view->second_last'>$view->second_last</a></li>";
+                        echo "<li><a class='page-link' href='?page=$view->totalNumber_of_page'>$view->totalNumber_of_page</a></li>";
+                    }
+
+                    else {
+                        echo "<li><a class='page-link' href='?page=1'>1</a></li>";
+                        echo "<li><a class='page-link' href='?page=2'>2</a></li>";
+                        echo "<li><a class='page-link'>...</a></li>";
+
+                        for ($counter = $view->totalNumber_of_page - 6; $counter <= $view->totalNumber_of_page; $counter++) {
+                            if ($counter == $view->pageNumber) {
+                                echo "<li class='active'><a class='page-link'>$counter</a></li>";
+                            }else{
+                                echo "<li><a class='page-link' href='?page=$counter'>$counter</a></li>";
+                            }
+                        }
+                    }
+                }
+            ?>
+            <li <?php if($view->pageNumber >= $view->totalNumber_of_page){ echo "class='disabled page-item'";} ?>>
+                <a class='page-link' <?php if($view->pageNumber < $view->totalNumber_of_page) { echo "href='?page=$view->nextPage'"; } ?>>Next <span class="fa fa-arrow-circle-right"></span></a>
+            </li>
+        </ul>
+    </nav>
+</nav>

@@ -1,0 +1,27 @@
+<div class="col-12 mt-3 filter-header-label text-center">
+    <h5> Filter Options </h5>
+</div>
+<form class="col-12 mt-3 sort-functions" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+    <div class="col-12 mt-3 sort-functions">
+        <h6 class="font-weight-bold pl-0">Function Date</h6>
+        <div class="form-check pl-4 mb-2">
+            <input type="checkbox" class="form-check-input" id="date" name="all" value="all">
+            <label class="form-check-label small text-uppercase card-link-secondary" for="date">All</label><br>
+
+            <input type="radio" class="form-check-input" id="date" name="date" value="1 WEEK">
+            <label class="form-check-label small text-uppercase card-link-secondary" for="date">Week</label><br>
+
+            <input type="radio" class="form-check-input" id="date" name="date" value="1 MONTH">
+            <label class="form-check-label small text-uppercase card-link-secondary" for="date">Whole Month</label><br>
+
+            <input type="radio" class="form-check-input" id="date" name="date" value="3 MONTH">
+            <label class="form-check-label small text-uppercase card-link-secondary" for="date">Last 3 Months</label><br>
+
+            <input type="radio" class="form-check-input" id="date" name="date" value="6 MONTH">
+            <label class="form-check-label small text-uppercase card-link-secondary" for="date">Last 6 Months</label><br>
+        </div>
+    </div>
+    <div class="col-12 mt-4 d-flex">
+        <input class="mx-auto bg-success text-white rounded" type="submit" name="filter_auctions" value="Filter">
+    </div>
+</form>

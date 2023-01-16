@@ -1,0 +1,119 @@
+<?php require('template/header.phtml') ?>
+
+<div class="container-fluid accessDetails_pages mt-2 mb-5">
+    <div class="border border-left-0 border-right-0 d-flex">
+        <ul class="nav nav-tabs user_search flex-fill">
+            <li class="nav-item pr-1 py-2">
+                <a class="nav-link p-2 bg-warning text-dark" href="admin.php?users"><span class="fa fa-edit"></span> Users</a>
+            </li>
+            <li class="nav-item py-2 ">
+                <a class="nav-link p-2 bg-warning text-dark" href="admin.php?bids"><span class="fa fa-edit"></span> Bids</a>
+            </li>
+            <li class="nav-item px-1 py-2">
+                <a class="nav-link p-2 bg-warning text-dark" href="admin.php?auctions"><span class="fa fa-edit"></span> Auctions</a>
+            </li>
+        </ul>
+        <?php
+            if(isset($_SESSION['users_pages']))
+            {
+               echo'<form class="form-inline ml-auto justify-content-end" method="post" action="admin.php">
+                    <input class="form-control search-bar-user mr-2" name="pattern" type="text" placeholder="User ID" aria-label="Search">
+                    <button  class="btn btn-light mr-2 border-info py-1 px-2" type="submit" name="search"> <span class="fa fa-search"></span> </button>
+                </form>';
+            }
+        ?>
+    </div>
+    <h2 class="mt-3 text-info text-center"><?php echo $view->tableType; ?></h2>
+    <div style="overflow-x:auto;">
+        <table class="table w-100 table-striped table-bordered table-warning table-hover text-center mt-4">
+            <?php
+            if(isset($view->table)) {
+                if ($view->table == 1)
+                {
+                    echo '
+                    <tr>
+                        <th class="text-primary">Bid ID</th>
+                        <th class="text-primary">User ID</th>
+                        <th class="text-primary">Item ID</th>
+                        <th class="text-primary">Your Price</th>
+                        <th class="text-primary">Current Bid Price</th>
+                        <th class="text-primary">Bid Placed Date</th>
+                        <th class="text-danger">Customise Bids</th>
+                    </tr>';
+                    foreach ($view->result as $bid)
+                    {
+                        echo '<tr> <td class="text-danger">' . $bid->getBidID() .
+                            '</td> <td >' . $bid->getUserID() .
+                            '</td> <td >' . $bid->getItemID() .
+                            '</td> <td>' . $bid->getUserPrice() .
+                            '</td> <td>' . $bid->getBidPrice() .
+                            '</td> <td>' . $bid->getBidDate() .
+                            '</td> <td> <a class="btn btn-light py-1 px-2" href="admin.php?btn=bid&id='. $bid->getBidID() .'" > Remove </a></td></tr>';
+                    }
+                }
+                if ($view->table == 2)
+                {
+                    echo '<tr>
+                    <th >User ID</th>
+                    <th >First Name</th>
+                    <th >Last Name</th>
+                    <th >Email</th>
+                    <th >Password</th>
+                    <th class="text-danger">Customise Bids</th>
+                    </tr>';
+                    foreach ($view->result as $userData)
+                    {
+                        echo '<tr> <td class="text-danger">' . $userData->getUserID() .
+                            '</td> <td>' . $userData->getFirstName() .
+                            '</td> <td>' . $userData->getLastName() .
+                            '</td> <td>' . $userData->getEmail() .
+                            '</td> <td>' . $userData->getPassword() .
+                            '</td> <td> <a class="btn btn-light py-1 px-2" href="admin.php?btn=user&id='. $userData->getUserID() .'" > Remove </a></td></tr>';
+                    }
+                }
+                if ($view->table == 3) {
+                    echo '<tr>
+                    <th class="text-primary">Auction ID</th>
+                    <th class="text-primary">Title</th>
+                    <th class="text-primary">End Time</th>
+                    <th class="text-primary">End Date</th>
+                    <th class="text-primary">Start Date</th>
+                    <th class="text-primary">Country</th>
+                    </tr>';
+                    foreach ($view->result as $auction) {
+                        echo '<tr> <td class="text-danger">' . $auction->getAuction_id() .
+                            '</td> <td>' . $auction->getTitle() .
+                            '</td> <td>' . $auction->getEnd_time() .
+                            '</td> <td>' . $auction->getEnd_date() .
+                            '</td> <td>' . $auction->getStart_date() .
+                            '</td> <td>' . $auction->getCountry_ID() .
+                            '</td> </tr>';
+                    }
+                }
+                if ($view->table == 4) {
+                    echo '<tr>
+                    <th >User ID</th>
+                    <th >First Name</th>
+                    <th >Last Name</th>
+                    <th >Email</th>
+                    <th >Password</th>
+                    <th class="text-danger">Customise Bids</th></tr>';
+                    if($view->result !== null)
+                    {
+                        echo '<tr> <td class="text-danger">' . $view->result->getUserID() .
+                            '</td> <td>' . $view->result->getFirstName() .
+                            '</td> <td>' . $view->result->getLastName() .
+                            '</td> <td>' . $view->result->getEmail() .
+                            '</td> <td>' . $view->result->getPassword() .
+                            '</td> <td> <a class="btn btn-light py-1 px-2" href="admin.php?btn=user&id='. $view->result->getUserID() .'" > Remove </a></td></tr>';
+                    }
+                }
+            }
+            ?>
+        </table>
+    </div>
+</div>
+
+<?php
+if(isset($_GET['users']) || isset($_SESSION['users_pages'])){require('Views/Pagination.phtml');}
+        require('template/footer.phtml'); ?>

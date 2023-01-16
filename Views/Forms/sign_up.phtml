@@ -1,0 +1,33 @@
+<?php require_once("Views/template/header.phtml"); ?>
+<div class="container-fluid accessDetails_pages">
+    <div class="login-container mt-5 text-c animated flipInX">
+        <div>
+            <h1 class="logo-badge text-whitesmoke pr-3"><span class="fa fa-grin-alt text-warning"></span></h1>
+        </div>
+        <h3 class="text-whitesmoke">Sign Up</h3>
+        <div class="container-content">
+            <form class="margin-t">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" class="form-control log_controls" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="first_name" name="first_name" class="form-control log_controls" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="last_name" name="last_name" class="form-control log_controls" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" onkeyup="validate_password(this.value)" name="password" class="form-control log_controls" placeholder="Password">
+                </div>
+                <p id="pass_status" class="text-danger text-center font-weight-bold"><small></small></p>
+                <button type="button" id="sign_log" name="sign_up_submit" onclick="login_signup('signup')" class="form-button button-l margin-b">Sign Up</button>
+                <p class="text-whitesmoke mt-2 text-center"><small>Already a user?</small></p>
+                <a class="register_link text-darkyellow text-decoration-none" href="login.php?log_btn=1"><small><< Sign In >></small></a>
+            </form>
+            <p class="mb-0 text-whitesmoke"><small> Raman &copy; 2020</small> </p>
+        </div>
+    </div>
+    <div class="animation_loader mx-auto mt-3"></div>
+</div>
+<script src="JavaScript/login.js"></script>
+<?php require('Views/template/footer.phtml'); ?>
